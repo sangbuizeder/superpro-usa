@@ -69,6 +69,7 @@
             easysearch.initFitmentWidget = function () {
             }; {%- endif -%} easysearch.dbSRC = "{{ es_config.form.db }}";
             easysearch.tree = {};
+            easysearch.initSearchTree({% if es_config.form.tag_filter != '0' %}true{% else %}false{% endif %}, {% if es_config.form.search_tag_filter != '0' %}true{% else %}false{% endif %}, {{ es_config.form.ranged_field }});
             easysearch.jq(document).ready(function () { {%- if es_config.form.tag_filter != '0' -%} easysearch.currentTag = easysearch.getCookie('easysearch-tag-filter');
                easysearch.jq('body').on('click', 'a[href*="collections/"]:not([id=easysearch-search])', function (e) {
                   var updatedUrl = easysearch.collectionUrlTagChecker($(this).attr('href'));
@@ -79,7 +80,8 @@
                   return false;
                });
                var gotoUrl = easysearch.collectionUrlTagChecker(window.location.href);
-               if (gotoUrl) window.location.href = gotoUrl; {%- endif -%} easysearch.jq('body').on('change', 'div[id=easysearch-holder] select, div[class*=easysearch-holder] select', function (event) {
+               if (gotoUrl) window.location.href = gotoUrl; {%- endif -%}
+               easysearch.jq('body').on('change', 'div[id=easysearch-holder] select, div[class*=easysearch-holder] select', function (event) {
                   var $holder = easysearch.jq(this).parent().closest('#easysearch-holder, .easysearch-holder');
                   var $container = easysearch.jq(this).parent().closest('.easysearch-select-holder');
                   var $nextSelContainers = $container.nextAll('.easysearch-select-holder');
@@ -126,17 +128,11 @@
                easysearch.initSearchTree({% if es_config.form.tag_filter != '0' %}true{% else %}false{% endif %}, {% if es_config.form.search_tag_filter != '0' %}true{% else %}false{% endif %}, {{ es_config.form.ranged_field }});
             });
          });</script>
-      <script type='text/javascript'
-              src='{% unless request.design_mode or canonical_url contains 'shopifypreview.com' %}//{{ shop.domain }}{% endunless %}/apps/easysearch/easysearch-1.0.1.js'
-              data-no-instant></script>
+      <script type='text/javascript' src='{% unless request.design_mode or canonical_url contains 'shopifypreview.com' %}//{{ shop.domain }}{% endunless %}/apps/easysearch/easysearch-1.0.1.js' data-no-instant></script>
    {%- else -%}
       <script type="text/javascript">
-         for (var el of document.querySelectorAll('.easysearch-holder, .easysearch-fitment-widget')) el.parentElement.removeChild(el);
-         document.addEventListener('easysearch_init', function (e) {
-            easysearch.initSearchTree = function () {
-            };
-            easysearch.jq('.easysearch-holder, .easysearch-fitment-widget').remove();
-         });
+         for( var el of document.querySelectorAll('.easysearch-holder, .easysearch-fitment-widget') ) el.parentElement.removeChild(el);
+         document.addEventListener('easysearch_init', function(e){ easysearch.initSearchTree = function(){}; easysearch.initSearchTree(true, false, 0); easysearch.jq('.easysearch-holder, .easysearch-fitment-widget').remove(); });
       </script>
    {%- endif -%}
 
