@@ -55,22 +55,248 @@
     {%- endif -%}
   </div>
 
-  {%- unless easysearchIncluded -%}
-    {%- if es_config.form.active_widgets != '0' -%}
-      <script type="text/javascript">document.addEventListener = document.addEventListener || function(e, f){ document.attachEvent('on' + e, f); }; document.addEventListener('easysearch_init', function (e) { e.preventDefault(); e.stopImmediatePropagation(); {%- if es_config.form.active_widgets != '1' and es_config.form.active_widgets != '3' -%} easysearch.jq.each(easysearch.jq('.easysearch-holder'), function(i, el){ if( !easysearch.jq(el).closest('.easysearch-fitment-search-widget').length ) easysearch.jq(el).remove(); }); if( !easysearch.jq('.easysearch-holder').length ) return; {%- endif -%} {%- if es_config.form.active_widgets != '2' and es_config.form.active_widgets != '3' -%} easysearch.jq('.easysearch-fitment-widget').remove(); easysearch.initFitmentWidget = function(){}; {%- endif -%} easysearch.dbSRC = "{{ es_config.form.db }}"; easysearch.tree = {}; easysearch.jq(document).ready(function() { {%- if es_config.form.tag_filter != '0' -%} easysearch.currentTag = easysearch.getCookie('easysearch-tag-filter'); easysearch.jq('body').on('click', 'a[href*="collections/"]:not([id=easysearch-search])', function(e){ var updatedUrl = easysearch.collectionUrlTagChecker( $(this).attr('href') ); if( !updatedUrl ) return true; e.preventDefault(); e.stopImmediatePropagation(); window.location.href = updatedUrl; return false; }); var gotoUrl = easysearch.collectionUrlTagChecker( window.location.href ); if( gotoUrl ) window.location.href = gotoUrl; {%- endif -%} easysearch.jq('body').on('change', 'div[id=easysearch-holder] select, div[class*=easysearch-holder] select', function(event) { var $holder = easysearch.jq(this).parent().closest('#easysearch-holder, .easysearch-holder'); var $container = easysearch.jq(this).parent().closest('.easysearch-select-holder'); var $nextSelContainers = $container.nextAll('.easysearch-select-holder'); var $prevSelContainers = $container.prevAll('.easysearch-select-holder'); var $btn = $holder.find('#easysearch-search'); var index = ''; if( $prevSelContainers.length ) { $prevSelContainers = $prevSelContainers.get().reverse(); easysearch.jq.each($prevSelContainers, function(i, el){ index += easysearch.jq(el).find('select').val() + ','; }); } index += easysearch.jq(this).val() + ','; var nextIndex = index; if( $nextSelContainers.length ) { easysearch.jq.each($nextSelContainers, function(i, el){ var $sel = easysearch.jq(el).find('select'); $sel.children('option:first').nextAll().remove(); $sel.attr('disabled', true); if( typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined' ) { easysearch.fillSelect($sel, nextIndex); } $sel.trigger('easysearch_select_change'); nextIndex += ','; }); } easysearch.curIndex = nextIndex; $holder.data('searchparams', nextIndex); if( typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined' && easysearch.tree[nextIndex][0] ) { var gotoUrl = easysearch.tree[nextIndex][0]; {%- if es_config.form.search_within_collection != '0' -%} gotoUrl = easysearch.collectionUrlHandleChecker( gotoUrl ); {%- endif -%} {%- if es_config.form.tag_filter != '0' -%} var updatedUrl = easysearch.collectionUrlTagChecker( gotoUrl, true ); if( updatedUrl ) gotoUrl = updatedUrl; {%- endif -%} {%- if es_config.form.autoredirect != '0' -%} if( easysearch.preSelect ) { if( !$nextSelContainers.length ) easysearch.preSelect = ''; } else { $holder[0].dataset.esUrl = gotoUrl; if( easysearch.saveSearchParams($holder[0])) window.location.href = gotoUrl; } {%- endif -%} if( $btn.length ) $btn.attr('disabled', false).attr('href', gotoUrl).attr('onclick', "return easysearch.saveSearchParams(this);"); } else { if( $btn.length ) { $holder.removeData('search_params'); $btn.attr('disabled', true).attr('href', 'javascript:void(0);').removeAttr('onclick'); } } }); easysearch.initSearchTree({% if es_config.form.tag_filter != '0' %}true{% else %}false{% endif %}, {% if es_config.form.search_tag_filter != '0' %}true{% else %}false{% endif %}, {{ es_config.form.ranged_field }}); }); });</script>
-      <script type='text/javascript' src='{% unless request.design_mode or canonical_url contains 'shopifypreview.com' %}//{{ shop.domain }}{% endunless %}/apps/easysearch/easysearch-1.0.1.js' data-no-instant></script>
-    {%- else -%}
+   {%- unless easysearchIncluded -%}
+   {%- if es_config.form.active_widgets != '0' -%}
+      <script type="text/javascript">document.addEventListener = document.addEventListener || function (e, f) {
+            document.attachEvent('on' + e, f);
+         };
+         document.addEventListener('easysearch_init', function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation(); {%- if es_config.form.active_widgets != '1' and es_config.form.active_widgets != '3' -%} easysearch.jq.each(easysearch.jq('.easysearch-holder'), function (i, el) {
+               if (!easysearch.jq(el).closest('.easysearch-fitment-search-widget').length) easysearch.jq(el).remove();
+            });
+            if (!easysearch.jq('.easysearch-holder').length) return; {%- endif -%} {%- if es_config.form.active_widgets != '2' and es_config.form.active_widgets != '3' -%} easysearch.jq('.easysearch-fitment-widget').remove();
+            easysearch.initFitmentWidget = function () {
+            }; {%- endif -%} easysearch.dbSRC = "{{ es_config.form.db }}";
+            easysearch.tree = {};
+            easysearch.jq(document).ready(function () { {%- if es_config.form.tag_filter != '0' -%} easysearch.currentTag = easysearch.getCookie('easysearch-tag-filter');
+               easysearch.jq('body').on('click', 'a[href*="collections/"]:not([id=easysearch-search])', function (e) {
+                  var updatedUrl = easysearch.collectionUrlTagChecker($(this).attr('href'));
+                  if (!updatedUrl) return true;
+                  e.preventDefault();
+                  e.stopImmediatePropagation();
+                  window.location.href = updatedUrl;
+                  return false;
+               });
+               var gotoUrl = easysearch.collectionUrlTagChecker(window.location.href);
+               if (gotoUrl) window.location.href = gotoUrl; {%- endif -%} easysearch.jq('body').on('change', 'div[id=easysearch-holder] select, div[class*=easysearch-holder] select', function (event) {
+                  var $holder = easysearch.jq(this).parent().closest('#easysearch-holder, .easysearch-holder');
+                  var $container = easysearch.jq(this).parent().closest('.easysearch-select-holder');
+                  var $nextSelContainers = $container.nextAll('.easysearch-select-holder');
+                  var $prevSelContainers = $container.prevAll('.easysearch-select-holder');
+                  var $btn = $holder.find('#easysearch-search');
+                  var index = '';
+                  if ($prevSelContainers.length) {
+                     $prevSelContainers = $prevSelContainers.get().reverse();
+                     easysearch.jq.each($prevSelContainers, function (i, el) {
+                        index += easysearch.jq(el).find('select').val() + ',';
+                     });
+                  }
+                  index += easysearch.jq(this).val() + ',';
+                  var nextIndex = index;
+                  if ($nextSelContainers.length) {
+                     easysearch.jq.each($nextSelContainers, function (i, el) {
+                        var $sel = easysearch.jq(el).find('select');
+                        $sel.children('option:first').nextAll().remove();
+                        $sel.attr('disabled', true);
+                        if (typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined') {
+                           easysearch.fillSelect($sel, nextIndex);
+                        }
+                        $sel.trigger('easysearch_select_change');
+                        nextIndex += ',';
+                     });
+                  }
+                  easysearch.curIndex = nextIndex;
+                  $holder.data('searchparams', nextIndex);
+                  if (typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined' && easysearch.tree[nextIndex][0]) {
+                     var gotoUrl = easysearch.tree[nextIndex][0]; {%- if es_config.form.search_within_collection != '0' -%} gotoUrl = easysearch.collectionUrlHandleChecker(gotoUrl); {%- endif -%} {%- if es_config.form.tag_filter != '0' -%} var updatedUrl = easysearch.collectionUrlTagChecker(gotoUrl, true);
+                     if (updatedUrl) gotoUrl = updatedUrl; {%- endif -%} {%- if es_config.form.autoredirect != '0' -%} if (easysearch.preSelect) {
+                        if (!$nextSelContainers.length) easysearch.preSelect = '';
+                     } else {
+                        $holder[0].dataset.esUrl = gotoUrl;
+                        if (easysearch.saveSearchParams($holder[0])) window.location.href = gotoUrl;
+                     } {%- endif -%} if ($btn.length) $btn.attr('disabled', false).attr('href', gotoUrl).attr('onclick', "return easysearch.saveSearchParams(this);");
+                  } else {
+                     if ($btn.length) {
+                        $holder.removeData('search_params');
+                        $btn.attr('disabled', true).attr('href', 'javascript:void(0);').removeAttr('onclick');
+                     }
+                  }
+               });
+               easysearch.initSearchTree({% if es_config.form.tag_filter != '0' %}true{% else %}false{% endif %}, {% if es_config.form.search_tag_filter != '0' %}true{% else %}false{% endif %}, {{ es_config.form.ranged_field }});
+            });
+         });</script>
+      <script type='text/javascript'
+              src='{% unless request.design_mode or canonical_url contains 'shopifypreview.com' %}//{{ shop.domain }}{% endunless %}/apps/easysearch/easysearch-1.0.1.js'
+              data-no-instant></script>
+   {%- else -%}
       <script type="text/javascript">
-        for( var el of document.querySelectorAll('.easysearch-holder, .easysearch-fitment-widget') ) el.parentElement.removeChild(el);
-        document.addEventListener('easysearch_init', function(e){ easysearch.initSearchTree = function(){}; easysearch.jq('.easysearch-holder, .easysearch-fitment-widget').remove(); });
+         for (var el of document.querySelectorAll('.easysearch-holder, .easysearch-fitment-widget')) el.parentElement.removeChild(el);
+         document.addEventListener('easysearch_init', function (e) {
+            easysearch.initSearchTree = function () {
+            };
+            easysearch.jq('.easysearch-holder, .easysearch-fitment-widget').remove();
+         });
       </script>
-    {%- endif -%}
+   {%- endif -%}
 
-    <style type="text/css">
-      .easysearch-text-center{text-align:center!important}.easysearch-text-left{text-align:left!important}.easysearch-text-right{text-align:right!important}#easysearch-holder .easysearch-preload-loader,.easysearch-btn-holder,.easysearch-clear-holder,.easysearch-holder .easysearch-preload-loader,.easysearch-select-holder{display:inline-block!important;margin:0 0 6px!important;vertical-align:top}#easysearch-holder .easysearch-preload-loader label,.easysearch-btn-holder label,.easysearch-holder .easysearch-preload-loader label,.easysearch-select-holder label{overflow:hidden!important;margin:0 30px 4px 0!important;line-height:18px!important;font-size:13px!important;font-style:normal!important;font-weight:400!important;white-space:nowrap!important}.easysearch-clear-holder>a,.easysearch-select-holder select{display:block!important;overflow:hidden!important;margin:0!important;width:100%!important}.easysearch-select-holder select{outline:0!important}@supports (-ms-ime-align:auto){.easysearch-select-holder select{cursor:default!important}}.easysearch-loading .easysearch-btn-holder,.easysearch-loading .easysearch-select-holder{opacity:.6}#easysearch-preload-loader{display:none!important}.easysearch-btn{display:inline-block!important;position:relative!important;padding:8px 15px!important;height:auto!important;border-radius:3px!important;cursor:pointer!important;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:none;color:#fff!important;line-height:20px!important;font-family:inherit!important;font-size:13px!important;font-style:normal!important;font-weight:400!important;letter-spacing:normal!important;text-decoration:none!important;text-transform:none!important;white-space:nowrap!important}.easysearch-btn-holder .easysearch-btn{display:block!important}#easysearch-search[disabled]{opacity:.7}.easysearch-vertical-mode{position:relative;text-align:center}#easysearch-holder.easysearch-vertical-mode .easysearch-select-holder,.easysearch-holder.easysearch-vertical-mode .easysearch-select-holder{display:block!important;margin-bottom:12px!important;clear:both!important}.easysearch-vertical-mode>input{display:block!important;margin:0 auto!important;text-align:center!important}.easysearch-vertical-mode .easysearch-btn-holder label{display:none}.easysearch-vertical-mode .easysearch-preload-loader{position:absolute;top:50%;left:50%;margin:-18px 0 0 -12px!important}.easysearch-vertical-mode .easysearch-clear-holder{float:right}@media only screen and (max-width:480px){#easysearch-holder,.easysearch-holder{text-align:center}#easysearch-holder .easysearch-select-holder,.easysearch-holder .easysearch-select-holder{display:block!important;margin-bottom:12px!important;clear:both!important}#easysearch-holder>input,.easysearch-holder>input{display:block!important;margin:0 auto!important;text-align:center!important}}.easysearch-hidden-item{display:none!important}      .easysearch-hidden{display:none !important;}.easysearch-item-selector + *,.easysearch-item[data-tags]{display:none;}
-      {%- if es_config.form.btn_color != nil and es_config.form.btn_color != "" -%}#easysearch-search{background:#{{ es_config.form.btn_color }} !important;}{%- endif -%}
-      {%- if es_config.form.styles != nil and es_config.form.styles != "" -%}{{ es_config.form.styles }}{%- endif -%}
-    </style>
-  {% endunless %}
+      <style type="text/css">
+         .easysearch-text-center {
+            text-align: center !important
+         }
+
+         .easysearch-text-left {
+            text-align: left !important
+         }
+
+         .easysearch-text-right {
+            text-align: right !important
+         }
+
+         #easysearch-holder .easysearch-preload-loader, .easysearch-btn-holder, .easysearch-clear-holder, .easysearch-holder .easysearch-preload-loader, .easysearch-select-holder {
+            display: inline-block !important;
+            margin: 0 0 6px !important;
+            vertical-align: top
+         }
+
+         #easysearch-holder .easysearch-preload-loader label, .easysearch-btn-holder label, .easysearch-holder .easysearch-preload-loader label, .easysearch-select-holder label {
+            overflow: hidden !important;
+            margin: 0 30px 4px 0 !important;
+            line-height: 18px !important;
+            font-size: 13px !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            white-space: nowrap !important
+         }
+
+         .easysearch-clear-holder > a, .easysearch-select-holder select {
+            display: block !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            width: 100% !important
+         }
+
+         .easysearch-select-holder select {
+            outline: 0 !important
+         }
+
+         @supports (-ms-ime-align:auto) {
+            .easysearch-select-holder select {
+               cursor: default !important
+            }
+         }
+
+         .easysearch-loading .easysearch-btn-holder, .easysearch-loading .easysearch-select-holder {
+            opacity: .6
+         }
+
+         #easysearch-preload-loader {
+            display: none !important
+         }
+
+         .easysearch-btn {
+            display: inline-block !important;
+            position: relative !important;
+            padding: 8px 15px !important;
+            height: auto !important;
+            border-radius: 3px !important;
+            cursor: pointer !important;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-appearance: none;
+            color: #fff !important;
+            line-height: 20px !important;
+            font-family: inherit !important;
+            font-size: 13px !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            letter-spacing: normal !important;
+            text-decoration: none !important;
+            text-transform: none !important;
+            white-space: nowrap !important
+         }
+
+         .easysearch-btn-holder .easysearch-btn {
+            display: block !important
+         }
+
+         #easysearch-search[disabled] {
+            opacity: .7
+         }
+
+         .easysearch-vertical-mode {
+            position: relative;
+            text-align: center
+         }
+
+         #easysearch-holder.easysearch-vertical-mode .easysearch-select-holder, .easysearch-holder.easysearch-vertical-mode .easysearch-select-holder {
+            display: block !important;
+            margin-bottom: 12px !important;
+            clear: both !important
+         }
+
+         .easysearch-vertical-mode > input {
+            display: block !important;
+            margin: 0 auto !important;
+            text-align: center !important
+         }
+
+         .easysearch-vertical-mode .easysearch-btn-holder label {
+            display: none
+         }
+
+         .easysearch-vertical-mode .easysearch-preload-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -18px 0 0 -12px !important
+         }
+
+         .easysearch-vertical-mode .easysearch-clear-holder {
+            float: right
+         }
+
+         @media only screen and (max-width: 480px) {
+            #easysearch-holder, .easysearch-holder {
+               text-align: center
+            }
+
+            #easysearch-holder .easysearch-select-holder, .easysearch-holder .easysearch-select-holder {
+               display: block !important;
+               margin-bottom: 12px !important;
+               clear: both !important
+            }
+
+            #easysearch-holder > input, .easysearch-holder > input {
+               display: block !important;
+               margin: 0 auto !important;
+               text-align: center !important
+            }
+         }
+
+         .easysearch-hidden-item {
+            display: none !important
+         }
+
+         .easysearch-hidden {
+            display: none !important;
+         }
+
+         .easysearch-item-selector + *, .easysearch-item[data-tags] {
+            display: none;
+         }
+
+         {%- if es_config.form.btn_color != nil and es_config.form.btn_color != "" -%}#easysearch-search {
+            background: # {{ es_config.form.btn_color }} !important;
+         }
+
+         {%- endif -%}
+         {%- if es_config.form.styles != nil and es_config.form.styles != "" -%}{{ es_config.form.styles }}{%- endif -%}
+      </style>
+   {% endunless %}
 </div>
 {%- assign easysearchIncluded = true -%}
