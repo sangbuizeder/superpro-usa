@@ -1,0 +1,38 @@
+      <div id="or_deals_grid">
+          <div class="top_row">
+            <div class="col1">960x540 Banner</div>
+            <div class="col2">
+              <div class="row">480x180 Banner</div>
+              <div class="row">480x180 Banner</div>
+              <div class="row">480x180 Banner</div>
+            </div>
+          </div>
+
+          <div class="bottom_row">
+            <div class="col">360x480 Banner</div>
+            <div class="col">360x480 Banner</div>
+            <div class="col">360x480 Banner</div>
+            <div class="col">360x480 Banner</div>
+          </div>
+        </div>
+        {{ page.content }}
+
+<style>
+  #or_deals_grid {display:block;width:100%;margin:0 auto;max-width:1440px;}
+  
+  .top_row {width:100%;display:inline-block;}
+  .top_row .col1 {width: calc(66.6666%);float:left;overflow:hidden;background-color:#F6F6F6;border:solid white 2px;border-radius:2px;height:540px;}
+  .top_row .col1 img {object-fit:cover;}
+  .top_row .col2 {width: calc(33.3333%);float:left;background-color:#F6F6F6;}
+  .top_row .col2 .row {margin:0;overflow:hidden;border:solid white 2px;border-radius:2px;height:180px;}
+  .top_row .col2 img {object-fit:cover;}
+  
+  .bottom_row {width:100%;margin-top:80px;display:inline-block;}
+  .bottom_row .col {width: calc(25%);float:left;overflow:hidden;background-color:#F6F6F6;height:480px;border:solid white 2px;border-radius:2px;}
+
+  @media screen and (max-width:768px) {
+    .top_row .col1 {width: calc(50%);}
+    .top_row .col2 {width: calc(50%);}
+    .bottom_row .col {width: calc(50%);}
+  }
+</style>

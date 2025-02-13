@@ -1,0 +1,11 @@
+{% if shop.metafields.geolizr.redirect_widget_enabled == 'true' %}
+<script>
+  Geolizr.init(function() {
+    Geolizr.getGeoData(function() {
+      Geolizr.redirects = {{ shop.metafields.geolizr.redirects }};
+      Geolizr.countryToRedirect = {{ shop.metafields.geolizr.country_to_redirect }};
+      Geolizr.redirect();
+    }, true);
+  });
+</script>
+{% endif %}

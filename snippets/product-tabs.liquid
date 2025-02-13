@@ -1,0 +1,106 @@
+<section class="or_product_tabs">
+
+<div class="product_tabs">
+  <button class="product_tabs tablink tab_active" onclick="openTab(event,'Details')">Details</button>
+  <button class="product_tabs tablink" onclick="openTab(event,'Reviews')">Reviews</button>
+  {% if product.metafields["global"]["installation_guide"] %}
+  <button class="product_tabs tablink" onclick="openTab(event,'Instructions')">Installation</button>
+  {% endif %}
+  {% if product.metafields["global"]["video"] %}
+  <button class="product_tabs tablink" onclick="openTab(event,'Video')">Video</button>
+  {% endif %}
+  {% if product.metafields["global"]["lubrication_guide"] %}
+  <button class="product_tabs tablink" onclick="openTab(event,'Lubrication')">Lubrication Guide</button>
+  {% endif %}
+  <button class="product_tabs tablink" onclick="openTab(event,'Fitment')">Fitment Guide</button>
+</div> 
+
+<div id="Details" class="tab_container">
+  <h3>DETAILS <i class="material-icons">details</i></h3>
+  <p class="title">{{ product.title }}</p>
+  {% if product.metafields["global"]["details_tab"] %}
+ 	{{ product.metafields["global"]["details_tab"] }}
+  {% else %}
+  	{{ product.description }}
+  {% endif %}
+</div>
+  
+<div id="Reviews" class="tab_container" style="display:none">
+	<div class="tab_content">
+ 		<h3>REVIEWS <i class="material-icons">rate_review</i></h3>
+      	<p class="title">{{ product.title }}</p>
+  		<p>We value our customers feedback greatly. Let us know what you think of your Whiteline products by leaving a review below, or by reaching out to our Customer Support team. We look forward to hearing from you!</p>
+  		<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  	</div>
+</div> 
+
+{% if product.metafields["global"]["installation_guide"] %}
+<div id="Instructions" class="tab_container" style="display:none">
+	<div class="tab_content">
+ 		<h3>INSTALLATION <i class="material-icons">book</i></h3>
+      	<p class="title">{{ product.title }}</p>
+      {% if product.metafields["global"]["installation_guide"] %}
+      <p><strong>Installation Guide:</strong> <a href="{{ product.metafields["global"]["installation_guide"] }}" target="_blank">Download Now</a></p>
+      {% endif %}
+      {% if product.metafields["global"]["installation_time"] %}
+      <p><strong>Installation Time (hours):</strong> <span>{{ product.metafields["global"]["installation_time"] }}</span></p>
+      {% endif %}
+      {% if product.metafields["global"]["installation_difficulty"] %}
+      <p><strong>Difficulty:</strong> <span>{{ product.metafields["global"]["installation_difficulty"] }}</span></p>
+      {% endif %}
+      {% if product.metafields["global"]["wheel_alignment_required"] %}
+      <p><strong>Wheel Alignment Required?</strong> <span>{{ product.metafields["global"]["wheel_alignment_required"] }}</span></p>
+      {% endif %}
+  	</div>
+</div> 
+  {% endif %}
+  
+  {% if product.metafields["global"]["lubrication_guide"] %}
+<div id="Lubrication" class="tab_container" style="display:none">
+	<div class="tab_content">
+      <h3>LUBRICATION <i class="material-icons">opacity</i></h3>
+      	<p class="title">{{ product.title }}</p>
+      {{ product.metafields["global"]["lubrication_guide"] }}
+  </div>
+</div>
+  {% endif %}
+  
+  {% if product.metafields["global"]["video"] %}
+<div id="Video" class="tab_container" style="display:none">
+	<div class="tab_content">
+      <h3>VIDEO <i class="material-icons">video_library</i></h3>
+      	<p class="title">{{ product.title }}</p>
+      {{ product.metafields["global"]["video"] }}
+  </div>
+</div>
+  {% endif %}
+  
+  <div id="Fitment" class="tab_container" style="display:none">
+	<div class="tab_content fitment">
+ 		<h3>FITMENT <i class="material-icons">link</i></h3>
+  		<p class="title">{{ product.title }} works with the following vehicles.</p>
+        <ul>
+          {%  for tag in product.tags %}
+          <li>{{ tag  | split: "-esi" | first }}</li>
+          {% endfor %}
+      </ul>
+  	</div>
+</div>
+  
+</section>
+
+<script>
+function openTab(evt, tabName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("tab_container");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" tab_active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " tab_active";
+}
+</script>

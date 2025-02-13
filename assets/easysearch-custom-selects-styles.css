@@ -1,0 +1,176 @@
+.header-search-holder .easysearch-holder .select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.header-search-holder #easysearch-container {
+  position: relative;
+  z-index: 1000;
+}
+
+.header-search-holder #easysearch-holder {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px 0 0;
+}
+
+.header-search-holder #easysearch-holder .select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 15px;
+  color: gray;
+  width: 100%;
+  height: 42px;
+}
+.header-search-holder #easysearch-holder select {
+  height: 42px;
+  color: #888;
+}
+
+.header-search-holder #easysearch-holder .select-styled {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 6px 40px 6px 15px;
+  background-color: #ffffff;
+  color: #2c2a29;
+  border-radius: 5px;
+}
+
+.header-search-holder #easysearch-holder select[disabled='disabled'] + .select-styled {
+	color: #ccc;
+}
+
+.header-search-holder #easysearch-holder select[disabled='disabled'] + .select-styled .select-styled-arrow:after {
+	border-top-color: #ccc;
+}
+
+.header-search-holder #easysearch-holder .select-styled-text {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  font-weight: 100;
+  line-height: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+.header-search-holder #easysearch-holder .select-styled-arrow {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 36px;
+  top: 0;
+  right: -3px;
+  background: #ffffff;
+  border-radius: 0 5px 5px 0;
+}
+.header-search-holder #easysearch-holder .select-styled-arrow:after {
+  content: "";
+  border: 1px solid transparent;
+  border-width: 11px 5px 0;
+  border-top-color: black;
+  position: absolute;
+  top: 16px;
+  right: 13px;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+
+}
+.header-search-holder #easysearch-holder .select-styled:active .select-styled-arrow:after,
+.header-search-holder #easysearch-holder .select-styled.active .select-styled-arrow:after {
+  top: 13px;
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+
+.header-search-holder #easysearch-holder .select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  max-height: 410px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-size: 14px;
+  list-style: none;
+}
+.header-search-holder #easysearch-holder .select-styled.active + ul.select-options {
+  display: block;
+}
+.header-search-holder #easysearch-holder .select-options li {
+  margin: 0;
+  padding: 6px 10px;
+  -moz-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+.header-search-holder #easysearch-holder .select-options li + li {
+  border-top: 1px solid #ececec;
+}
+.header-search-holder #easysearch-holder .select-options li:hover {
+  color: white;
+  background: #575757;
+}
+.header-search-holder #easysearch-holder .select-options li[rel="hide"] {
+  display: none;
+}
+
+.header-search-holder #easysearch-holder .easysearch-btn-holder,
+.header-search-holder #easysearch-holder .easysearch-preload-loader {
+  display: none !important;
+}
+
+.header-search-holder {
+  position: relative;
+  padding: 10px 0 4px;
+  background-color: #fae347;
+}
+.header-search-holder .page-width {
+  height: 100% !important;
+}
+.header-search-holder #easysearch-container {
+  position: initial !important;
+}
+.header-search-holder .easysearch-select-holder {
+  float: none; 
+  width: 22%;
+}
+.header-search-holder #easysearch-container select {
+  height: auto !important; 
+  color: #2c2a29 !important; 
+  background-color: #ffffff !important; 
+  font-weight: bold !important; 
+  position: relative !important;
+}
+.header-search-holder .easysearch-btn-holder,
+.header-search-holder .easysearch-x {
+  display: none !important;
+}
+.header-search-holder .easysearch-clear-holder a {
+  color: #ee3e4a !important;
+  font-weight: bold !important;
+  padding: 6px 0px !important;
+}
+
+@media only screen and (max-width: 768px){
+  .header-search-holder #easysearch-holder {display: block; text-align: center;}
+  .header-search-holder .easysearch-select-holder {width: 100%;}
+}

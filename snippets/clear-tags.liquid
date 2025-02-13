@@ -1,0 +1,12 @@
+{% assign tags_list = '' %}
+{% assign count = 0 %}
+{% for tag in current_tags %}
+	{% assign count = count | plus: 1 %}
+	{% if tag contains '-esi' %}
+		{% assign new_tag = tag | split: '-esi' | first %}
+		{% if count != 1 %} {% assign tags_list = tags_list | join: ' + ' | join: new_tag %} {% else %} {% assign tags_list = new_tag %}{% endif %}
+	{% else %}
+		{% if count != 1 %} {% assign tags_list = tags_list | join: ' + ' | join: tag %} {% else %} {% assign tags_list = tag %}{% endif %}
+	{% endif %}
+{% endfor %}
+{{tags_list}}

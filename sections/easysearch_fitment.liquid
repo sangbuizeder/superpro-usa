@@ -1,0 +1,216 @@
+{% if product %}
+<div class="easysearch-fitment-widget easysearch-hidden">
+  <div class="easysearch-fitment-loader">
+    <div class="easysearch-fitment-icon">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+        <rect x="0" y="13" width="4" height="5" fill="#bbb"><animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite"></animate><animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite"></animate></rect>
+        <rect x="10" y="13" width="4" height="5" fill="#bbb"><animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate><animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate></rect>
+        <rect x="20" y="13" width="4" height="5" fill="#bbb"><animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate><animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate></rect>
+        </svg>
+    </div>
+  </div>
+  <div class="easysearch-fitment-search-widget easysearch-hidden">
+    <h4 class="easysearch-fitment-header"></h4>
+    <div id="easysearch-container">
+  <div id="easysearch-holder" class="easysearch-holder easysearch-loading  ">
+                          
+          <div class="easysearch-select-holder">
+        <label for="easysearch_field_6092">
+          Year                  </label>
+        <select id="easysearch_field_6092" data-sort-order="2" disabled>
+          <option value=''>Select Year</option>
+        </select>
+      </div>
+          <div class="easysearch-select-holder">
+        <label for="easysearch_field_6093">
+          Make                  </label>
+        <select id="easysearch_field_6093" data-sort-order="1" disabled>
+          <option value=''>Select Make</option>
+        </select>
+      </div>
+          <div class="easysearch-select-holder">
+        <label for="easysearch_field_6094">
+          Model                  </label>
+        <select id="easysearch_field_6094" data-sort-order="1" disabled>
+          <option value=''>Select Model</option>
+        </select>
+      </div>
+          <div class="easysearch-select-holder">
+        <label for="easysearch_field_6321">
+          Trim                  </label>
+        <select id="easysearch_field_6321" data-sort-order="0" disabled>
+          <option value=''>Select Trim</option>
+        </select>
+      </div>
+    
+    
+          <div class="easysearch-btn-holder">
+        <label for="easysearch-search">&nbsp;</label>
+        <a href="javascript:void(0);" id="easysearch-search" class="easysearch-btn" target="_self" disabled>
+          Search        </a>
+      </div>
+    
+          <div class="easysearch-clear-holder">
+        <label>&nbsp;</label>
+        <a href="javascript:void(0)" onclick="easysearch.clearTagFilter();">
+          <span class="easysearch-x">&times;</span> {% unless easysearchClearFiltersText %}clear filters{% else %}{{ easysearchClearFiltersText }}{% endunless %}
+        </a>
+      </div>
+    
+          <div class="easysearch-preload-loader">
+        <label for="easysearch-search">&nbsp;</label>
+        <div>
+          <svg version="1.1" id="easysearch-preload-loader-icon" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
+               width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+            <rect x="0" y="13" width="4" height="5" fill="#bbb">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite" />
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0s" dur="0.6s" repeatCount="indefinite" />
+            </rect>
+            <rect x="10" y="13" width="4" height="5" fill="#bbb">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+            </rect>
+            <rect x="20" y="13" width="4" height="5" fill="#bbb">
+              <animate attributeName="height" attributeType="XML" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+              <animate attributeName="y" attributeType="XML" values="13; 5; 13" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+            </rect>
+          </svg>
+        </div>
+      </div>
+      </div>
+
+  {% unless easysearchIncluded  %}
+          <script type="text/javascript">
+        document.addEventListener = document.addEventListener || function(e, f){ document.attachEvent('on' + e, f); };
+        document.addEventListener('easysearch_init', function (e) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+                    
+          easysearch.dbSRC = "//cdn.shopify.com/s/files/1/1101/5888/t/2/assets/staging-superprousa_myshopify_com.csv?v=1699416694";
+          easysearch.tree = {};
+
+          easysearch.jq(document).ready(function() {
+                          easysearch.currentTag = easysearch.getCookie('easysearch-tag-filter');
+
+              easysearch.jq('body').on('click', 'a[href*="collections/"]:not([id=easysearch-search])', function(e){
+                var updatedUrl = easysearch.collectionUrlTagChecker( $(this).attr('href') );
+                if( !updatedUrl ) return true;
+
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                window.location.href = updatedUrl;
+                return false;
+              });
+
+              var gotoUrl = easysearch.collectionUrlTagChecker( window.location.href  );
+              if( gotoUrl ) window.location.href = gotoUrl;
+            
+            easysearch.jq('body').on('change', 'div[id=easysearch-holder] select, div[class*=easysearch-holder] select', function(event) {
+              var $holder = easysearch.jq(this).parent().closest('#easysearch-holder, .easysearch-holder');
+              var $container = easysearch.jq(this).parent().closest('.easysearch-select-holder');
+              var $nextSelContainers = $container.nextAll('.easysearch-select-holder');
+              var $prevSelContainers = $container.prevAll('.easysearch-select-holder');
+              var $btn = $holder.find('#easysearch-search');
+
+              // prev selects
+              var index = '';
+              if( $prevSelContainers.length ) {
+                $prevSelContainers = $prevSelContainers.get().reverse();
+                easysearch.jq.each($prevSelContainers, function(i, el){
+                  index += easysearch.jq(el).find('select').val() + ',';
+                });
+              }
+              index += easysearch.jq(this).val() + ',';
+
+              // next selects
+              var nextIndex = index;
+              if( $nextSelContainers.length ) {
+                easysearch.jq.each($nextSelContainers, function(i, el){
+                  var $sel = easysearch.jq(el).find('select');
+                  $sel.children('option:first').nextAll().remove();
+                  $sel.attr('disabled', true);
+
+                  if( typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined' ) {
+                    easysearch.fillSelect($sel, nextIndex);
+                  }
+
+                  $sel.trigger('easysearch_select_change'); // API method for custom selects
+                  nextIndex += ',';
+                });
+              }
+
+              easysearch.curIndex = nextIndex;
+              $holder.data('searchparams', nextIndex);
+
+              if( typeof easysearch.tree[nextIndex] !== 'undefined' && typeof easysearch.tree[nextIndex][0] !== 'undefined' && easysearch.tree[nextIndex][0] ) {
+                var gotoUrl = easysearch.tree[nextIndex][0];
+                                  gotoUrl = easysearch.collectionUrlHandleChecker( gotoUrl );
+                
+                                  var updatedUrl = easysearch.collectionUrlTagChecker( gotoUrl, true );
+                  if( updatedUrl ) gotoUrl = updatedUrl;
+                
+                                  if( easysearch.preSelect ) {
+                    if( !$nextSelContainers.length ) easysearch.preSelect = '';
+                  } else {
+                    $holder[0].dataset.esUrl = gotoUrl;
+                    if( easysearch.saveSearchParams($holder[0])) window.location.href = gotoUrl;
+                  }
+                                if( $btn.length ) $btn.attr('disabled', false).attr('href', gotoUrl).attr('onclick', "return easysearch.saveSearchParams(this);");
+
+              } else {
+                if( $btn.length ) {
+                  $holder.removeData('search_params');
+                  $btn.attr('disabled', true).attr('href', 'javascript:void(0);').removeAttr('onclick');
+                }
+              }
+            });
+
+            easysearch.initSearchTree(true, false, 0);
+          });
+        });
+      </script>
+      <script type='text/javascript' src='{% unless request.design_mode or canonical_url contains 'shopifypreview.com' %}//{{ shop.domain }}{% endunless %}/apps/easysearch/easysearch.js' data-no-instant></script>
+    
+    <style type="text/css">
+      .easysearch-text-center{text-align:center!important}.easysearch-text-left{text-align:left!important}.easysearch-text-right{text-align:right!important}#easysearch-holder .easysearch-preload-loader,.easysearch-btn-holder,.easysearch-clear-holder,.easysearch-holder .easysearch-preload-loader,.easysearch-select-holder{display:inline-block!important;margin:0 0 6px!important;vertical-align:top}#easysearch-holder .easysearch-preload-loader label,.easysearch-btn-holder label,.easysearch-holder .easysearch-preload-loader label,.easysearch-select-holder label{overflow:hidden!important;margin:0 30px 4px 0!important;line-height:18px!important;font-size:13px!important;font-style:normal!important;font-weight:400!important;white-space:nowrap!important}.easysearch-clear-holder>a,.easysearch-select-holder select{display:block!important;overflow:hidden!important;margin:0!important;width:100%!important}.easysearch-select-holder select{outline:0!important}@supports (-ms-ime-align:auto){.easysearch-select-holder select{cursor:default!important}}.easysearch-loading .easysearch-btn-holder,.easysearch-loading .easysearch-select-holder{opacity:.6}#easysearch-preload-loader{display:none!important}.easysearch-btn{display:inline-block!important;position:relative!important;padding:8px 15px!important;height:auto!important;border-radius:3px!important;cursor:pointer!important;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:none;color:#fff!important;line-height:20px!important;font-family:inherit!important;font-size:13px!important;font-style:normal!important;font-weight:400!important;letter-spacing:normal!important;text-decoration:none!important;text-transform:none!important;white-space:nowrap!important}.easysearch-btn-holder .easysearch-btn{display:block!important}#easysearch-search[disabled]{opacity:.7}.easysearch-vertical-mode{position:relative;text-align:center}#easysearch-holder.easysearch-vertical-mode .easysearch-select-holder,.easysearch-holder.easysearch-vertical-mode .easysearch-select-holder{display:block!important;margin-bottom:12px!important;clear:both!important}.easysearch-vertical-mode>input{display:block!important;margin:0 auto!important;text-align:center!important}.easysearch-vertical-mode .easysearch-btn-holder label{display:none}.easysearch-vertical-mode .easysearch-preload-loader{position:absolute;top:50%;left:50%;margin:-18px 0 0 -12px!important}.easysearch-vertical-mode .easysearch-clear-holder{float:right}@media only screen and (max-width:480px){#easysearch-holder,.easysearch-holder{text-align:center}#easysearch-holder .easysearch-select-holder,.easysearch-holder .easysearch-select-holder{display:block!important;margin-bottom:12px!important;clear:both!important}#easysearch-holder>input,.easysearch-holder>input{display:block!important;margin:0 auto!important;text-align:center!important}}.easysearch-hidden-item{display:none!important}      .easysearch-hidden{display:none !important;}.easysearch-item-selector + *,.easysearch-item[data-tags]{display:none;}
+      #easysearch-search{background:#0077cc !important;}      /* EASY SEARCH YMM */ #orion_ymm_fitment{display:block !important;clear:both !important;} #easysearch-container #easysearch-holder.easysearch-vertical-mode .easysearch-select-holder, #easysearch-container .easysearch-holder.easysearch-vertical-mode .easysearch-select-holder {clear:none !important;} @media screen and (max-width:480px) { .easysearch-btn-holder {display:block !important; height:auto !important;} #easysearch-holder .easysearch-select-holder {margin-bottom:1px !important;} .easysearch-btn-holder a.easysearch-btn {margin-top:0 !important;} }    </style>
+  {% endunless %}
+</div>
+{% assign easysearchIncluded = true %}
+  </div>
+  <div class="easysearch-fitment-holder easysearch-hidden">
+    <div class="easysearch-fitment-results">
+      <div class="easysearch-fitment-icon-holder">
+        <div class="easysearch-fitment-icon">
+          <svg class="easysearch-fitment-icon-success" width="18px" viewBox="0 0 18 18"><path d="M16.145,2.571c-0.272-0.273-0.718-0.273-0.99,0L6.92,10.804l-4.241-4.27 c-0.272-0.274-0.715-0.274-0.989,0L0.204,8.019c-0.272,0.271-0.272,0.717,0,0.99l6.217,6.258c0.272,0.271,0.715,0.271,0.99,0 L17.63,5.047c0.276-0.273,0.276-0.72,0-0.994L16.145,2.571z"/></svg>
+          <svg class="easysearch-fitment-icon-fail" width="32px" viewBox="0 0 512 512"><path d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z"/></svg>
+        </div>
+      </div>
+      <div class="easysearch-fitment-details">
+        <h4 class="easysearch-fitment-header"></h4>
+        <div class="easysearch-fitment-params-holder easysearch-fitment-text">
+          <span class="easysearch-fitment-params easysearch-fitment-text"></span>
+          <span class="easysearch-fitment-change"></span>
+        </div>
+      </div>
+    </div>
+    <div class="easysearch-fitment-other-results easysearch-fitment-text"></div>
+  </div>
+  {% capture esfpc %}{% for c in product.collections %}{{ c.handle }},{% endfor %}{% endcapture %}
+  <script>document.addEventListener('easysearch_loaded', function(){easysearch.initFitmentWidget({ allProductTags: {{ product.tags | json }}, allProductCollections: {{ esfpc | split: ',' | json }} });});</script>
+      <style>.easysearch-fitment-widget{margin-bottom:20px}.easysearch-fitment-search-widget{padding:20px 0;border:1px solid #f3f3f2;border-width: 1px 0}.easysearch-fitment-widget #easysearch-holder{text-align:left}.easysearch-fitment-loader{padding:12px 18px 8px;border:1px solid #f3f3f2;border-radius:4px;}.easysearch-fitment-results{display:flex;padding:10px;border:1px solid #7cae46;border-radius:4px}.easysearch-fitment-results.easysearch-fitment-fail{border-color:#e61b24}.easysearch-fitment-results .easysearch-fitment-icon-holder{flex:0 0 50px}.easysearch-fitment-results .easysearch-fitment-icon-holder .easysearch-fitment-icon{display:flex;width:40px;height:40px;justify-content:center;align-items:center;background:#7cae46}.easysearch-fitment-results.easysearch-fitment-fail .easysearch-fitment-icon-holder .easysearch-fitment-icon{background:#e61b24}.easysearch-fitment-results .easysearch-fitment-icon-holder .easysearch-fitment-icon svg{fill:#fff}.easysearch-fitment-results.easysearch-fitment-fail .easysearch-fitment-icon-success,.easysearch-fitment-results:not(.easysearch-fitment-fail) .easysearch-fitment-icon-fail{display:none}.easysearch-fitment-widget .easysearch-fitment-header{margin:0 0 12px;padding:0;font-size:16px;line-height:19px;font-weight:bold}.easysearch-fitment-results .easysearch-fitment-header{margin:0;color:#7cae46}.easysearch-fitment-results.easysearch-fitment-fail .easysearch-fitment-header{color:#e61b24}.easysearch-fitment-results .easysearch-fitment-details{flex:1}.easysearch-fitment-results .easysearch-fitment-params{padding-right:5px}.easysearch-fitment-results .easysearch-fitment-change{vertical-align:top;color:#7cae46;font-size:14px;line-height:22px;cursor:pointer}.easysearch-fitment-results.easysearch-fitment-fail .easysearch-fitment-change{color:#e61b24;text-decoration:underline}.easysearch-fitment-widget .easysearch-clear-holder label{display:none}.easysearch-fitment-widget .easysearch-clear-holder>a{font-size:15px;line-height:36px;text-decoration: none}.easysearch-fitment-widget .easysearch-fitment-link{text-decoration:underline}.easysearch-fitment-widget .easysearch-fitment-text{vertical-align:top;font-size:15px;line-height:23px}.easysearch-fitment-other-results{padding-top:5px}</style>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "EasySearch Fitment Widget",
+  "tag": "section",
+  "class": "easysearch-fitment-section-container",
+  "presets": [{
+    "name": "EasySearch Fitment Widget",
+    "category": "EasySearch"
+  }],
+  "templates": ["product"]
+}
+{% endschema %}

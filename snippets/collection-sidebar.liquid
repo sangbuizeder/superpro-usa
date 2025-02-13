@@ -1,0 +1,102 @@
+<section class="or_collection_sidebar">
+
+  <!--div class="block">
+    <h4>Filter by</h4>
+    <div class="clearfix filter">
+   <select class="coll-filter">
+     <option value="">All</option>
+     {% for tag in collection.all_tags %}
+     {% if current_tags contains tag %}
+     <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+     {% else %}
+     <option value="{{ tag | handle }}">{{ tag }}</option>
+     {% endif %}
+     {% endfor %}
+   </select>
+ </div>
+  </div-->
+  
+  {% if section.settings.sort_enable %}
+  <div class="block">
+  <h4>Sort by</h4>
+              <div>
+                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
+                <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort hidden">
+                  {% if sort_by == collection.default_sort_by %}
+                    <option value="title-ascending" selected="selected">{{ 'collections.sorting.title' | t }}</option>
+                    {% if collection.default_sort_by != 'manual' %}
+                      <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'best-selling' %}
+                      <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'title-ascending' %}
+                      <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'title-descending' %}
+                      <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'price-ascending' %}
+                      <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'price-descending' %}
+                      <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'created-descending' %}
+                      <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+                    {% endif %}
+                    {% if collection.default_sort_by != 'created-ascending' %}
+                      <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+                    {% endif %}
+                  {% else %}
+                    <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+                    <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+                    <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
+                    <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
+                    <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                    <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+                    <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+                    <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+                  {% endif %}
+                </select>
+                <input id="DefaultSortBy" type="hidden" value="{{ collection.default_sort_by }}">
+              </div>
+  </div>
+            {% endif %}
+  
+  <!--div class="block">
+  	<h4>Shop By Make</h4>
+  {% for link in linklists.make.links %}
+  	<ul>
+  		<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+  	</ul>
+{% endfor %} 
+  </div-->
+  
+  <div class="block">
+  	<h4>Shop By Collection</h4>
+  	<ul class="parent">
+{% for link in linklists.main-menu.links %}
+      <li {% if link.active %}class="active {% if link.child_active %}child-active{% endif %}"{% endif %}><small><a href="{{ link.url }}">{{ link.title | escape }}</a></small>
+{% if link.links != blank %}
+  <ul class="child">
+    {% for child_link in link.links %}  
+    <li {% if child_link.active %}class="active {% if child_link.child_active %}child-active{% endif %}"{% endif %}><a href= "{{ child_link.url }}">{{ child_link.title }}</a>
+    {% if child_link.links != blank %}
+      <ul class="grandchild">
+      {% for grandchild_link in child_link.links %}  
+        <li {% if grandchild_link.active %}class="active {% if grandchild_link.child_active %}child-active{% endif %}"{% endif %}><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+      {% endfor %}
+      </ul>
+    {% endif %}   
+    </li>
+    {% endfor %}
+  </ul> 
+{% endif %} 
+</li>
+{% endfor %}
+</ul>
+  </div>
+  
+</section>

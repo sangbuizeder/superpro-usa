@@ -1,0 +1,18 @@
+<!--div class="clearfix filter">
+  <select class="coll-filter">
+    <option value="">All</option>
+    {% for type in collection.all_types %}
+    {% if current_types contains tag %}
+    <option value="{{ tag | handle }}" selected>{{ type }}</option>
+    {% else %}
+    <option value="{{ tag | handle }}">{{ type }}</option>
+    {% endif %}
+    {% endfor %}
+  </select>
+</div-->
+
+<!--ul>
+{% for link in linklists.filter-adjustable-sway-bars.links %}
+  <li><a href= "{{ link.url }}">{{ link.title }}</a></li>
+{% endfor %}
+</ul-->

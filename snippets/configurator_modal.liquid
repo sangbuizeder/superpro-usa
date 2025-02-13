@@ -1,0 +1,17 @@
+<button id="configurator_modal" onclick="document.getElementById('configModal_open').style.display='block'" class="configurator">Configure Vehicle <i class="material-icons black">arrow_forward</i></button>
+
+  <div id="configModal_open" class="w3-modal" style="display:none;">
+   <div class="w3-modal-content">
+
+    <header class="w3-container"> 
+      <span onclick="document.getElementById('configModal_open').style.display='none'" 
+      class="w3-button w3-display-topright">&times;</span>
+      <h2>Configure Your Vehicle</h2>
+    </header>
+
+    <div class="w3-container">
+      {% include 'configurator' %}
+    </div>
+
+  </div>
+  </div>

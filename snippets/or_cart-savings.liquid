@@ -1,0 +1,12 @@
+{% assign total_saving = 0 %}
+{% for item in cart.items %}
+{% if item.variant.compare_at_price > item.variant.price %}
+{% assign saving = item.variant.compare_at_price | minus: item.variant.price | times: item.quantity %}
+{% assign total_saving = saving | plus: total_saving %}
+<div>
+  <span class="cart__subtotal-title or-display" style="font-size:14px;color:green;">Total Savings</span>
+  <span class="cart__subtotal or-display" style="font-size:14px;color:green;">{{ total_saving | money }}</span>
+</div>
+{% else %}
+{% endif %}
+{% endfor %}

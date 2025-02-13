@@ -1,0 +1,236 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+{% include 'geolizr-init' %}
+<script>
+    window.dataLayer = window.dataLayer || [];
+</script>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_button }}">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WCM6BG5');</script>
+<!-- End Google Tag Manager -->
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  {% capture seo_title %}
+  {% if current_tags %}
+      {%- assign meta_tags = current_tags | join: ', ' %} {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  	&ndash;
+    {% endif %}
+    {{ page_title }}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+  {% endcapture %}
+  <title>{{ seo_title }}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'or-theme-styles' %}
+  {% include 'google-fonts' %}
+
+  <script>
+    var theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        showMore: {{ 'general.filters.show_more' | t | json }},
+        showLess: {{ 'general.filters.show_less' | t | json }},
+        addressError: {{ 'sections.map.address_error' | t | json }},
+        addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+        addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+        authError: {{ 'sections.map.auth_error_html' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    }
+
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+
+
+  <link rel="stylesheet" href="{{ 'sp-usa.css' | asset_url }}" type="text/css">
+  
+  <!--[if (lte IE 9) ]>{{ 'match-media.min.js' | asset_url | script_tag }}<![endif]-->
+
+  {% if template.directory == 'customers' %}
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+  {% endif %}
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'lazysizes.min.js' | asset_url }}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'vendor.js' | asset_url }}"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'vendor.js' | asset_url }}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'theme.js' | asset_url }}"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'theme.js' | asset_url }}"></script><![endif]-->
+
+  <!-- TYPEKIT FONT EMBED LINK -->
+  <link rel="stylesheet" href="https://use.typekit.net/bjs1rke.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <script>
+    window.ChatraGroupID = 'n3q28t7FeWXzXZDFX';
+  </script>
+  
+  {{ content_for_header }}
+  
+  <meta name="google-site-verification" content="BsfZa8UIpcfqJTngV3V3GiTNfrBc--7hKF3c97nGQJg" />
+
+  <link rel="stylesheet" href="{{ 'easysearch-custom-selects-styles.css' | asset_url }}" hreflang="en" />
+  <script src="{{ 'easysearch-custom-selects.js' | asset_url }}"></script>
+  
+  <style>
+    @media (min-width:750px) {
+      #shopify-section-header {position:fixed; display:block; z-index:999; background:white;}
+      {% if template == 'index' %}
+      .main-content {padding-top:260px;}
+      {% else %}
+      .main-content {padding-top:300px;}
+      {% endif %}
+    }
+  </style>
+
+  <!-- Affirm -->
+<script>
+_affirm_config = {
+   public_api_key:  "CFKC71H82T17CO9W",
+   script:          "https://cdn1.affirm.com/js/v2/affirm.js"
+};
+(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+// Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+</script>
+<!-- End Affirm -->
+
+  <!-- Global Site Tag (gtag.js) - Google Ads: Dynamic Remarketing -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11178873173"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11178873173');
+</script>
+<script type="text/javascript">
+	{% if template contains 'product' %}
+		gtag('event', 'page_view', {
+		ecomm_prodid: '{{ product.variants.first.sku }}',
+		ecomm_pagetype: 'product',
+		ecomm_totalvalue: {{ product.price | money_without_currency | replace: ',', '.' }}
+		});
+	{% elsif template contains 'cart' %}
+		gtag('event', 'page_view', {
+		ecomm_prodid: [{% for item in cart.items %}'{{ item.product.sku }}{{ item.product.variants.first.sku }}',{% endfor %}],
+		ecomm_pagetype:  'cart',
+		ecomm_totalvalue: {{cart.total_price | money_without_currency | replace: ',', '.' }}
+		});
+	{% elsif template contains 'search' %}
+		gtag('event', 'page_view', {
+		ecomm_prodid: '',
+		ecomm_pagetype: 'searchresults',
+		ecomm_totalvalue: ''
+		});
+	{% elsif template contains 'index' %}
+		gtag('event', 'page_view', {
+		ecomm_prodid: '',
+		ecomm_pagetype: 'home',
+		ecomm_totalvalue: ''
+		});
+	{% else %}
+		gtag('event', 'page_view', {
+		ecomm_prodid: '',
+		ecomm_pagetype: 'other',
+		ecomm_totalvalue: ''
+		});
+	{% endif %}
+</script>  
+
+{% render 'gsf-conversion-pixels' %}
+</head><div class='evm-multiple evm-us-main-div' data-page='{{template}}'></div>
+
+
+<body class="template-{{ template | split: '.' | first }}">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCM6BG5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <div id="SearchDrawer" class="search-bar drawer drawer--top">
+    <div class="search-bar__table">
+      <div class="search-bar__table-cell search-bar__form-wrapper">
+        <form class="search search-bar__form" action="/search" method="get" role="search">
+          <button class="search-bar__submit search__submit btn--link" type="submit">
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+        </form>
+      </div>
+      <div class="search-bar__table-cell text-right">
+        <button type="button" class="btn--link search-bar__close js-drawer-close">
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {% section 'header' %}
+
+  <div class="page-container" id="PageContainer">
+
+    <main class="main-content" id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+
+     {% section 'or-footer-ctas' %}
+    {% section 'footer' %}
+
+  </div> 
+<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->{% include 'geolizr-redirect' %} {% include 'smile-initializer' %}
+
+{% include 'geolizr-popup' %}
+{% include 'ajaxify-cart' %}
+<script>
+  window.addEventListener('load', function() {
+    document.querySelectorAll('[name="add"]').forEach(function(a) {
+      a.onclick = function() {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11178873173/rSs1CLa3jKEYENWiwNIp'
+        });
+      }
+    })
+
+    document.querySelectorAll('[name="checkout"]').forEach(function(b) {
+      b.onclick = function() {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-11178873173/nYV7COS1jKEYENWiwNIp'
+        });
+      }
+    })
+
+  });
+
+</script>
+
+</body>
+</html>

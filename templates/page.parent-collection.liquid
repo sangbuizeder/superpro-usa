@@ -1,0 +1,25 @@
+<!--{ % section 'parent-collection' % }-->
+<section class="or_parent_collection">
+<section class="or_parent_banner">
+  <div class="or_parent_title"><h1>{{ page.title }}</h1><!--{ { page_description }}--></div>
+</section>
+<section class="or_parent_textblock">
+  <div class="content">{{ page.content }}</div>
+</section>
+<section class="or_parent_productfeed">
+  {% section 'parent-productfeed' %}
+</section>
+  <a name="details"></a>
+<section class="or_parent_brandcopy">
+	{% if page.metafields.c_f.educational %}
+ 		{{ page.metafields.c_f.educational }}
+	{% endif %}
+</section>
+</section>
+<section class="blog-feed-parent-collection">
+{% section 'blog-feed' %}
+</section>
+
+<style>
+  section.or_parent_banner {background-image: url({{ page.metafields.c_f.featured_image }});}
+</style>

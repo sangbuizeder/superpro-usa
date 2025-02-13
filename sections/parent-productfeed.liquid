@@ -1,0 +1,178 @@
+{% if template contains 'page' and page.url == '/pages/maxg-coilovers' %}
+	
+{% if collections.coilovers.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.coilovers.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+          <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% elsif template contains 'page' and page.url == '/pages/adjustable-sway-bars' %}
+{% if collections.sway-bar.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.sway-bar.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+           <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% elsif template contains 'page' and page.url == '/pages/alignment' %}
+{% if collections.car-alignment-products.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.car-alignment-products.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+           <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% elsif template contains 'page' and page.url == '/pages/bushings' %}
+{% if collections.auto-bushings.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.auto-bushings.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+           <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% elsif template contains 'page' and page.url == '/pages/bracing' %}
+{% if collections.chassis-bracings.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.chassis-bracings.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+           <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% elsif template contains 'page' and page.url == '/pages/lowering-springs' %}
+{% if collections.lowering-springs.products.size > 0 %}
+    <h4>FEATURED PRODUCTS</h4>
+    <ul>
+{% for product in collections.lowering-springs.products limit:5 %}
+	<li>
+		<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape  }}" /><br>    
+		<div class="h4 grid-view-item__title">{{ product.title }}</div>
+           <span><p><small><strong>TYPE:</strong> {{ product.type }}</small></p></span>
+    <span><small><strong>SKU:</strong> {{ product.variants.first.sku }}</small></span>
+           {% if product.metafields["global"]["placement"] %}
+    <br><span class="placement"><small><strong>PLACEMENT: </strong> {{ product.metafields["global"]["placement"] }}</small></span>
+    {% endif %}
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+      </a>
+      <form method="post" action="/cart/add" class="add_to_cart_collection">
+  		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  		<input type="submit" value="Add to cart" class="btn" />
+	</form>
+      </li>  
+{% endfor %}
+    </ul>
+{% endif %}
+
+{% else %}
+<p>nope</p>
+{% endif %}
