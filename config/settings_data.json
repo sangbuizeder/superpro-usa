@@ -291,16 +291,15 @@
           "2eadc38e-b5f5-4c1f-b6a9-3d06070a68d7": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/Super_Bundles_website_banner_2560_x_1940_px_1_1.webp",
+              "image": "shopify://shop_images/upgrade_your_4x4_02c61481-e2ba-4dd3-ab9b-7d63c2141c3d.png",
               "alignment": "center",
-              "title": "",
-              "subheading": "",
+              "title": "UPGRADE YOUR 4X4",
+              "subheading": "Leading 4x4 Suspension with Global Testing and Lifetime Warranty",
               "link": ""
             }
           },
           "cbd25e57-9537-463c-85c0-4dcdd818125b": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "image": "shopify://shop_images/JEEP.png",
               "alignment": "bottom",
@@ -311,7 +310,6 @@
           },
           "a62dc74a-0166-4cde-a72c-67c1be77dd9a": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "image": "shopify://shop_images/toyota_tacoma.png",
               "alignment": "center",
@@ -322,7 +320,6 @@
           },
           "7859327b-9ff3-4183-a8f0-89f2f2260f5a": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "image": "shopify://shop_images/SPUSA_Fixed_Offset_UCAs_Banner_1.png",
               "alignment": "center",
