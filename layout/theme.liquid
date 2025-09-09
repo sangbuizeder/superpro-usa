@@ -20,6 +20,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
   <link rel="canonical" href="{{ canonical_url }}">
 
+  <!-- CRM Tracking Codes -->
+  <script src='//au.fw-cdn.com/20089901/49802.js' chat='false'></script>
+  {% if customer %}
+    <!-- Add new_contact -->
+    <script>
+      var new_contact = {
+        "First name": "{{ customer.first_name }}",
+        "Last name": "{{ customer.last_name }}",
+        "Email": "{{ customer.email }}",
+        {%- if customer.phone != blank -%}
+        "Phone": "{{ customer.phone }}",
+        {%- else -%}
+        "Phone": "{{ customer.default_address.phone }}",
+        {%- endif -%}
+      };
+      var identifier = "{{ customer.email }}";
+      fwcrm.identify(identifier, new_contact);
+    </script>
+
+  {%  if request.page_type == 'product' %}
+    <script>
+      // Product Page Viewed event listener
+      FM.trackCustomEvent("Product Page Viewed", {
+        "Email": "{{ customer.email }}",
+        {%- if customer.phone != blank -%}
+        "Phone": "{{ customer.phone }}",
+        {%- else -%}
+        "Phone": "{{ customer.default_address.phone }}",
+        {%- endif -%}
+        {%- for variant in product.variants -%}
+        "Url" : {{ request.origin | append: variant.url | json }}
+        {%- endfor -%}
+      });
+
+      // Add to Cart event listener
+      document.addEventListener('DOMContentLoaded', () => {
+        const addToCartButtons = document.querySelectorAll('.product-form__submit');
+
+        addToCartButtons.forEach(button => {
+          button.addEventListener('click', event => {
+            FM.trackCustomEvent("SP USA Added to Cart", {
+              "email": "{{ customer.email }}",
+              {%- if customer.phone != blank -%}
+              "phone": "{{ customer.phone }}",
+              {%- else -%}
+              "phone": "{{ customer.default_address.phone }}",
+              {%- endif -%}
+              {%- for variant in product.variants -%}
+              {%- if variant.sku != blank -%}
+              "sku": {{ variant.sku | json }},
+              {%- endif -%}
+              "price" : {{ variant.price | divided_by: 100.00 | json }},
+              "currency" : {{ cart.currency.iso_code | json }},
+              {%- endfor -%}
+            });
+          });
+        });
+      });
+    </script>
+  {% endif %}
+
+  {% endif %}
+
+  <!-- End CRM Tracking Codes -->
+
   {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
   {% endif %}

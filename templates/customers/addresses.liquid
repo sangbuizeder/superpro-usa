@@ -171,3 +171,19 @@
 
 </div>
 {% endpaginate %}
+
+{% if customer.default_address %}
+   <script>
+      var sample_properties = {
+         "Address": "{{ customer.default_address.address1 }}", //Replace with address of user
+         "City": "{{ customer.default_address.city }}", //Replace with city of user
+         {%- if customer.phone != blank -%}
+         "phone": "{{ customer.phone }}",
+         {%- else -%}
+         "phone": "{{ customer.default_address.phone }}",
+         {%- endif -%}
+      };
+      fwcrm.set(sample_properties);
+   </script>
+
+{% endif %}
