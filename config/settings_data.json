@@ -65,7 +65,7 @@
           "main_linklist": "main-menu",
           "message": true,
           "home_page_only": false,
-          "message_text": "FREE SHIPPING TO LOWER 48 ON ORDERS OVER $50",
+          "message_text": "FREE SHIPPING TO LOWER 48 ON ORDERS OVER $100",
           "message_link": "shopify://collections",
           "color_bg": "#1262eb",
           "color_text": "#ffffff"
